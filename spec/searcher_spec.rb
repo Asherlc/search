@@ -1,4 +1,4 @@
-require_relative '../lib/searcher'
+require_relative '../app/lib/searcher'
 
 RSpec.describe Searcher do
   subject do

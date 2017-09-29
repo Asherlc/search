@@ -14,5 +14,5 @@ attribute, value = ARGV[1].split(':')
 results = Searcher.instance.perform(data_source, attribute, value)
 
 results.each do |model|
-  puts Serializer.new(model, data_source).to_json
+  puts Serializer.new(models, data_source).to_table
 end

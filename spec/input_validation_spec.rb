@@ -1,4 +1,4 @@
-require_relative '../lib/input_validation'
+require_relative '../app/lib/input_validation'
 
 RSpec.describe InputValidation do
   describe '.validate_data_source' do
@@ -8,7 +8,7 @@ RSpec.describe InputValidation do
       end
     end
 
-    context 'with an valid data source' do
+    context 'with a valid data source' do
       it 'does not throw an error' do
         expect { InputValidation.validate_data_source('organizations') }.to_not raise_error
       end
@@ -22,7 +22,7 @@ RSpec.describe InputValidation do
       end
     end
 
-    context 'with an valid attribute value pair' do
+    context 'with a valid attribute value pair' do
       it 'does not throw an error' do
         expect { InputValidation.validate_attribute_value('neighbors:jerry') }.to_not raise_error
       end

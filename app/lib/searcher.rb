@@ -1,9 +1,6 @@
 require 'singleton'
 require 'json'
 
-class AttributeError < StandardError
-end
-
 class Searcher
   include Singleton
 
@@ -16,10 +13,6 @@ class Searcher
   private
 
   def match?(model, attribute, value, data_source)
-    if !model.has_key?(attribute)
-      raise AttributeError, "No attribute `#{attribute}` present on #{data_source}"
-    end
-
     model_value = model[attribute]
     
     if empty?(value) && empty?(model_value)
