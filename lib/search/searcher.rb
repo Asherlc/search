@@ -41,7 +41,7 @@ class Searcher
   end
 
   def data_directory
-    File.expand_path('../data',  File.dirname(__FILE__))
+    File.expand_path('../../data',  File.dirname(__FILE__))
   end
 
   def file_path_for(data_source)

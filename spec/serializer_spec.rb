@@ -1,4 +1,4 @@
-require_relative '../app/lib/serializer'
+require_relative '../lib/search/serializer'
 
 RSpec.describe Serializer do
   before(:each) do

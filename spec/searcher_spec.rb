@@ -1,4 +1,4 @@
-require_relative '../app/lib/searcher'
+require_relative '../lib/search/searcher'
 
 RSpec.describe Searcher do
   subject do
@@ -101,9 +101,9 @@ RSpec.describe Searcher do
     end
   end
 
-  context 'with an invalid search key' do
-    it 'raises an error' do
-      expect { subject.perform('organizations', 'seinfeld characters', 'Joe Divola') }.to raise_error(AttributeError)
+  context 'with a not-present search key' do
+    it 'returns an empty array' do
+      expect(subject.perform('organizations', 'seinfeld characters', 'Joe Divola')).to eq([])
     end
   end
 end
