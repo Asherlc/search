@@ -1,10 +1,9 @@
 require_relative './searcher'
 
+# Serialize any given model and its associations
 class Serializer
   def initialize(model, data_source, include_relationships = true)
-    if !model.is_a?(Hash)
-      raise "Model must be a hash, not #{model.inspect}"
-    end
+    raise "Model must be a hash, not #{model.inspect}" unless model.is_a?(Hash)
 
     @include_relationships = include_relationships
     @model = model
@@ -13,9 +12,7 @@ class Serializer
 
   def to_s
     model_with_relationships.inject('') do |string, (key, value)|
-      if !@include_relationships && relationship_to_data_source(key)
-        next string
-      end
+      next string if !@include_relationships && relationship_to_data_source(key)
 
       string << serialize_attribute(key, value)
       string << "\n"
@@ -28,23 +25,22 @@ class Serializer
     if value.respond_to?(:each)
       serialize_iterable(key, value)
     else
-      "#{key}: #{value.to_s}"
+      "#{key}: #{value}"
     end
   end
 
   def serialize_iterable(key, value)
-    to_indent = nil
     data_source = relationship_to_data_source(key)
 
-    if data_source && value.is_a?(Array)
-      to_indent = value.collect do |related_model|
-        Serializer.new(related_model, data_source, false).to_s
-      end.join("\n")
-    elsif data_source
-      to_indent = Serializer.new(value, data_source, false).to_s
-    else
-      to_indent = value.join(', ')
-    end
+    to_indent = if data_source && value.is_a?(Array)
+                  value.collect do |related_model|
+                    Serializer.new(related_model, data_source, false).to_s
+                  end.join("\n")
+                elsif data_source
+                  Serializer.new(value, data_source, false).to_s
+                else
+                  value.join(', ')
+                end
 
     indented = to_indent ? indent(to_indent) : ''
 
@@ -52,12 +48,12 @@ class Serializer
   end
 
   def indent(string)
-    string.gsub(/([^\n]*)(\n|$)/) do |match|
-      last_iteration = ($1 == "" && $2 == "")
-      line = ""
-      line << ('-- ') unless last_iteration
-      line << $1
-      line << $2
+    string.gsub(/([^\n]*)(\n|$)/) do |_match|
+      last_iteration = (Regexp.last_match(1) == '' && Regexp.last_match(2) == '')
+      line = ''
+      line << '-- ' unless last_iteration
+      line << Regexp.last_match(1)
+      line << Regexp.last_match(2)
       line
     end
   end
@@ -77,12 +73,13 @@ class Serializer
     with_relationships = @model.dup
 
     case @data_source
-    when 'organizations'
-    when 'tickets'
+    when 'organizations' then
+      # No relationships to add
+    when 'tickets' then
       with_relationships['submitter'] = Searcher.instance.perform('users', '_id', @model['submitter_id'])[0]
       with_relationships['assignee'] = Searcher.instance.perform('users', '_id', @model['assignee_id'])[0]
       with_relationships['organization'] = Searcher.instance.perform('organizations', '_id', @model['organization_id'])[0]
-    when 'users'
+    when 'users' then
       with_relationships['organization'] = Searcher.instance.perform('organizations', '_id', @model['organization_id'])[0]
       with_relationships['tickets'] = Searcher.instance.perform('tickets', 'submitter_id', @model['_id']) + Searcher.instance.perform('tickets', 'assignee_id', @model['_id'])
     end
