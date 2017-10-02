@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative './searcher'
 
 # Serialize any given model and its associations
@@ -14,8 +16,8 @@ class Serializer
     model_with_relationships.inject('') do |string, (key, value)|
       next string if !@include_relationships && relationship_to_data_source(key)
 
-      string << serialize_attribute(key, value)
-      string << "\n"
+      string += serialize_attribute(key, value)
+      string + "\n"
     end
   end
 
@@ -51,9 +53,9 @@ class Serializer
     string.gsub(/([^\n]*)(\n|$)/) do |_match|
       last_iteration = (Regexp.last_match(1) == '' && Regexp.last_match(2) == '')
       line = ''
-      line << '-- ' unless last_iteration
-      line << Regexp.last_match(1)
-      line << Regexp.last_match(2)
+      line += '-- ' unless last_iteration
+      line += Regexp.last_match(1)
+      line += Regexp.last_match(2)
       line
     end
   end

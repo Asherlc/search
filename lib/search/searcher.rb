@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'singleton'
 require 'json'
 
@@ -17,6 +19,8 @@ class Searcher
     model_value = model[attribute]
 
     if empty?(value) && empty?(model_value)
+      true
+    elsif value == 'null' && model_value.nil?
       true
     elsif empty?(value) || empty?(model_value)
       false

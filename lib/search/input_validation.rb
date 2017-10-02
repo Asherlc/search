@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class InputError < StandardError
 end
 
 # Validations methods for string input
 module InputValidation
   VALID_DATA_SOURCES = %w[organizations tickets users].freeze
-  VALID_SEARCH_EXAMPLE = "search <#{VALID_DATA_SOURCES.join('|')}> <attribute>:<value>".freeze
+  VALID_SEARCH_EXAMPLE = "search <#{VALID_DATA_SOURCES.join('|')}> <attribute>:<value>"
 
   def self.validate_data_source(data_source)
     raise InputError, "No data source specified. Try: `#{VALID_SEARCH_EXAMPLE}`" unless data_source

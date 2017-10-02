@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../lib/search/searcher'
 
 RSpec.describe Searcher do
