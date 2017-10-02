@@ -990,7 +990,7 @@
     "description": "Elit est consectetur deserunt velit magna non ea. Eiusmod minim proident ullamco est.",
     "priority": "high",
     "status": "pending",
-    "submitter_id": 28,
+    "submitter_id": 1,
     "assignee_id": 73,
     "organization_id": 111,
     "tags": [
@@ -1014,7 +1014,7 @@
     "priority": "high",
     "status": "solved",
     "submitter_id": 59,
-    "assignee_id": 48,
+    "assignee_id": 1,
     "organization_id": 102,
     "tags": [
       "American Samoa",

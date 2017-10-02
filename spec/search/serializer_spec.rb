@@ -197,7 +197,7 @@ RSpec.describe Serializer do
   # Testing the remaining data source
   context 'with a user' do
     it 'serializes the result' do
-      expect(Serializer.new(user, 'tickets').to_s).to eq <<~STRING
+      expect(Serializer.new(user, 'users').to_s).to eq <<~STRING
         _id: 1
         url: http://initech.zendesk.com/api/v2/users/1.json
         external_id: 74341f74-9c79-49d5-9611-87ef9b6eb75f
@@ -218,9 +218,115 @@ RSpec.describe Serializer do
         -- Springville, Sutton, Hartsville/Hartley, Diaperville
         suspended: true
         role: admin
-        submitter: 
-        assignee: 
         organization: 
+        tickets:
+        -- _id: fc5a8a70-3814-4b17-a6e9-583936fca909
+        -- url: http://initech.zendesk.com/api/v2/tickets/fc5a8a70-3814-4b17-a6e9-583936fca909.json
+        -- external_id: e8cab26b-f3b9-4016-875c-b0d9a258761b
+        -- created_at: 2016-07-08T07:57:15 -10:00
+        -- type: problem
+        -- subject: A Nuisance in Kiribati
+        -- description: Ipsum reprehenderit non ea officia labore aute. Qui sit aliquip ipsum nostrud anim qui pariatur ut anim aliqua non aliqua.
+        -- priority: high
+        -- status: open
+        -- submitter_id: 1
+        -- assignee_id: 19
+        -- organization_id: 120
+        -- tags:
+        -- -- Minnesota, New Jersey, Texas, Nevada
+        -- has_incidents: true
+        -- via: voice
+        -- 
+        -- _id: b776f78f-e3ac-4139-9a8f-6f905472f44d
+        -- url: http://initech.zendesk.com/api/v2/tickets/b776f78f-e3ac-4139-9a8f-6f905472f44d.json
+        -- external_id: 32437120-7e6f-448b-b108-b659f244f1b5
+        -- created_at: 2016-03-27T04:49:07 -11:00
+        -- type: task
+        -- subject: A Nuisance in Virgin Islands (US)
+        -- description: Elit est consectetur deserunt velit magna non ea. Eiusmod minim proident ullamco est.
+        -- priority: high
+        -- status: pending
+        -- submitter_id: 1
+        -- assignee_id: 73
+        -- organization_id: 111
+        -- tags:
+        -- -- Washington, Wyoming, Ohio, Pennsylvania
+        -- has_incidents: true
+        -- due_at: 2016-08-01T12:32:09 -10:00
+        -- via: voice
+        -- 
+        -- _id: cb304286-7064-4509-813e-edc36d57623d
+        -- url: http://initech.zendesk.com/api/v2/tickets/cb304286-7064-4509-813e-edc36d57623d.json
+        -- external_id: df00b850-ca27-4d9a-a91a-d5b8d130a79f
+        -- created_at: 2016-03-30T11:43:24 -11:00
+        -- type: task
+        -- subject: A Nuisance in Saint Lucia
+        -- description: Nostrud veniam eiusmod reprehenderit adipisicing proident aliquip. Deserunt irure deserunt ea nulla cillum ad.
+        -- priority: urgent
+        -- status: pending
+        -- submitter_id: 1
+        -- assignee_id: 11
+        -- organization_id: 106
+        -- tags:
+        -- -- Missouri, Alabama, Virginia, Virgin Islands
+        -- has_incidents: false
+        -- due_at: 2016-08-03T04:44:08 -10:00
+        -- via: chat
+        -- 
+        -- _id: 25cb699f-a5dd-45d8-9bc1-9c4b7d096946
+        -- url: http://initech.zendesk.com/api/v2/tickets/25cb699f-a5dd-45d8-9bc1-9c4b7d096946.json
+        -- external_id: e85c7f58-59ed-4e05-9734-eb2a3aa92fa8
+        -- created_at: 2016-04-03T04:05:26 -10:00
+        -- type: problem
+        -- subject: A Problem in Syria
+        -- description: Consequat Lorem esse non et labore. Eiusmod veniam amet est anim minim laborum anim qui ipsum magna velit pariatur tempor.
+        -- priority: high
+        -- status: solved
+        -- submitter_id: 59
+        -- assignee_id: 1
+        -- organization_id: 102
+        -- tags:
+        -- -- American Samoa, Northern Mariana Islands, Puerto Rico, Idaho
+        -- has_incidents: true
+        -- due_at: 2016-08-10T07:23:05 -10:00
+        -- via: chat
+        -- 
+        -- _id: 1fafaa2a-a1e9-4158-aeb4-f17e64615300
+        -- url: http://initech.zendesk.com/api/v2/tickets/1fafaa2a-a1e9-4158-aeb4-f17e64615300.json
+        -- external_id: f6f639a4-a8af-4910-804f-5c3a80252653
+        -- created_at: 2016-01-15T11:52:49 -11:00
+        -- type: problem
+        -- subject: A Problem in Russian Federation
+        -- description: Elit exercitation veniam commodo nulla laboris. Dolore occaecat cillum nisi amet in.
+        -- priority: low
+        -- status: solved
+        -- submitter_id: 44
+        -- assignee_id: 1
+        -- organization_id: 115
+        -- tags:
+        -- -- Georgia, Tennessee, Mississippi, Marshall Islands
+        -- has_incidents: true
+        -- due_at: 2016-08-07T04:10:34 -10:00
+        -- via: voice
+        -- 
+        -- _id: 13aafde0-81db-47fd-b1a2-94b0015803df
+        -- url: http://initech.zendesk.com/api/v2/tickets/13aafde0-81db-47fd-b1a2-94b0015803df.json
+        -- external_id: 6161e938-50cc-4545-acff-a4f23649b7c3
+        -- created_at: 2016-03-30T08:35:27 -11:00
+        -- type: task
+        -- subject: A Problem in Malawi
+        -- description: Lorem ipsum eiusmod pariatur enim. Qui aliquip voluptate cupidatat eiusmod aute velit non aute ullamco.
+        -- priority: urgent
+        -- status: solved
+        -- submitter_id: 42
+        -- assignee_id: 1
+        -- organization_id: 122
+        -- tags:
+        -- -- New Mexico, Nebraska, Connecticut, Arkansas
+        -- has_incidents: false
+        -- due_at: 2016-08-08T03:25:53 -10:00
+        -- via: voice
+
       STRING
     end
   end
