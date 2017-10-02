@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
 require './lib/search'
+
+search(ARGV[0], ARGV[1])

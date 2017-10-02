@@ -1,8 +1,8 @@
-require_relative '../lib/search/serializer'
+require_relative '../../lib/search/serializer'
 
 RSpec.describe Serializer do
   before(:each) do
-    test_data_directory = File.expand_path('./data', File.dirname(__FILE__))
+    test_data_directory = File.expand_path('../data', File.dirname(__FILE__))
     allow(Searcher.instance).to receive(:data_directory).and_return(test_data_directory)
   end
 

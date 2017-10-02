@@ -1,4 +1,4 @@
-require_relative '../lib/search/input_validation'
+require_relative '../../lib/search/input_validation'
 
 RSpec.describe InputValidation do
   describe '.validate_data_source' do
